@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: rgba(16, 117, 16, 0.706);
+        font-family: "Open Sans", sans-serif;
+        font-weight: 500;
+      }
+      .largename {
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="largename">cisco x. wallace-hurtado</p>
+    <p id="displayedAge"></p>
+    <script>
+      setInterval(displayAge, 1000);
+      const birthDate = new Date("2006-11-15");
+      displayAge();
+      function displayAge() {
+        const now = new Date();
+        let years = now.getFullYear() - birthDate.getFullYear();
+        let months = now.getMonth() - birthDate.getMonth();
+        let days = now.getDate() - birthDate.getDate();
+        let hours = now.getHours() - birthDate.getHours();
+        let minutes = now.getMinutes() - birthDate.getMinutes();
+        let seconds = now.getSeconds() - birthDate.getSeconds();
+        // adjust them negatives
+        if (days < 0) {
+          months--;
+          const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+          days += prevMonth.getDate();
+        }
+        if (months < 0) {
+          years--;
+          months += 12;
+        }
+        if (hours < 0) {
+          days--;
+          hours += 24;
+        }
+        if (minutes < 0) {
+          hours--;
+          hours += 60;
+        }
+
+        // seconds since midnight
+        const secondsToday =
+          now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+
+        document.getElementById("displayedAge").innerHTML =
+          "I am currently " +
+          years +
+          "yrs, " +
+          months +
+          "m, " +
+          days +
+          "d, " +
+          hours +
+          "h, " +
+          minutes +
+          "m, and " +
+          seconds +
+          "s old!";
+      }
+    </script>
+  </body>
+</html>
